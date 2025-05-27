@@ -5,7 +5,7 @@ export default function Home() {
     <>
       <h1>Home Page</h1>
       <hr />
-      <AppWelcome headTitle="SWU" isShow={true}/>
+      <AppWelcome headTitle="Srinakharitwirot University" isShow={true}/>
     </>
   );
 }
