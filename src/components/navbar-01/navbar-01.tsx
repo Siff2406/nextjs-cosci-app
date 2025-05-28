@@ -15,10 +15,12 @@ const Navbar01Page = () => {
           <NavMenu className="hidden md:block" />
 
           <div className="flex items-center gap-3">
-            <Button variant="outline" className="hidden sm:inline-flex">
+            <Button asChild variant="outline" className="hidden sm:inline-flex">
             <Link href="/login">เข้าสุ่ระบบหรอจ้ะ</Link>
             </Button>
-            <Button>สมัครสมาชิกเลยจร้า</Button>
+            <Button asChild>
+            <Link href="/signup">อยากสมัครสมาชิกหรอ</Link>
+            </Button>
 
             {/* Mobile Menu */}
             <div className="md:hidden">
