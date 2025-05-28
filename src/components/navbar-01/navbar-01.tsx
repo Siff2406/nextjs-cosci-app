@@ -16,7 +16,7 @@ const Navbar01Page = () => {
 
           <div className="flex items-center gap-3">
             <Button asChild variant="outline" className="hidden sm:inline-flex">
-            <Link href="/login">เข้าสุ่ระบบหรอจ้ะ</Link>
+            <Link href="/login">เข้าสู่ระบบหรอจ้ะ</Link>
             </Button>
             <Button asChild>
             <Link href="/signup">อยากสมัครสมาชิกหรอ</Link>
