@@ -1,15 +1,19 @@
 import { MailIcon, MapPinIcon, PhoneIcon } from "lucide-react";
 import Link from "next/link";
 
-const Contact01Page = () => (
-  <div className="min-h-screen flex items-center justify-center">
+type Contact01PageProps = {
+  version: string;
+}
+
+const Contact01Page = ({ version }: Contact01PageProps) => (
+  <div className="min-h-215 flex items-center justify-center">
     <div className="text-center">
       <b className="text-muted-foreground">Contact Us</b>
       <h2 className="mt-3 text-2xl md:text-4xl font-bold tracking-tight">
         Get In Touch
       </h2>
       <p className="mt-4 text-base sm:text-lg">
-        Our friendly team is always here to chat.
+        API Version: {version}
       </p>
       <div className="max-w-screen-xl mx-auto py-24 grid md:grid-cols-2 lg:grid-cols-3 gap-16 md:gap-10 px-6 md:px-0">
         <div className="text-center flex flex-col items-center">
