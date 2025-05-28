@@ -1,11 +1,9 @@
-import AppWelcome from "./components/AppWelcome";
+import Hero02 from "@/components/hero-02/hero-02";
 
 export default function Home() {
   return (
     <>
-      <h1>Home Page</h1>
-      <hr />
-      <AppWelcome headTitle="Srinakharitwirot University" isShow={true}/>
+    <Hero02 />
     </>
   );
 }
