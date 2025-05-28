@@ -22,9 +22,9 @@ const Contact01Page = () => (
           </p>
           <Link
             className="mt-4 font-medium text-primary"
-            href="mailto:akashmoradiya3444@gmail.com"
+            href="mailto:abracadabra@gmail.com"
           >
-            akashmoradiya3444@gmail.com
+            abracadabra@gmail.com
           </Link>
         </div>
         <div className="text-center flex flex-col items-center">
