@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Logo } from "./logo";
 import { NavMenu } from "./nav-menu";
 import { NavigationSheet } from "./navigation-sheet";
+import Link from "next/link";
 
 const Navbar01Page = () => {
   return (
@@ -15,9 +16,9 @@ const Navbar01Page = () => {
 
           <div className="flex items-center gap-3">
             <Button variant="outline" className="hidden sm:inline-flex">
-              จะเข้าสู่ระบบหรอจ้ะ
+            <Link href="/login">เข้าสุ่ระบบหรอจ้ะ</Link>
             </Button>
-            <Button>สมัครสมาชิกสิ้</Button>
+            <Button>สมัครสมาชิกเลยจร้า</Button>
 
             {/* Mobile Menu */}
             <div className="md:hidden">
