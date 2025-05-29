@@ -5,8 +5,11 @@ import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { useCartStore } from "@/lib/cart-store";
 import { Trash } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export default function CartList() {
+    const router = useRouter();
+
     const items = useCartStore((state) => state.items);
     const removeItem = useCartStore((state) => state.removeItem);
     const clearCart = useCartStore((state) => state.clearCart);
@@ -55,12 +58,16 @@ export default function CartList() {
             }
         </TableBody>
       </Table>
-      <div className="text-right mt-5">
+      <div className="text-right mt-5 flex justify-between ">
         <div className="font-medium text-xl"> 
             รวมทั้งหมด: {totalPrice.toFixed(2)}
         </div>
         <div>
             <Button onClick={() => { clearCart(); } }>ลบสินค้าทั้งหมด</Button>
+            <Button className="ml-5" onClick={() => {
+                clearCart();
+                router.replace('/product')
+            } }>ยืนยันการสั่งซื้อ</Button>
         </div>
       </div>
 
