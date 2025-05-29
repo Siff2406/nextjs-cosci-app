@@ -18,7 +18,7 @@ const Navbar01Page = () => {
 
           <div className="flex items-center gap-3">
             
-            <Badge><ShoppingBasket />0 item(s)</Badge>
+            <Badge className="p-2 text-sm"><ShoppingBasket className="" />0 item(s)</Badge>
 
             <Button asChild variant="outline" className="hidden sm:inline-flex">
             <Link href="/login">เข้าสู่ระบบหรอจ้ะ</Link>
