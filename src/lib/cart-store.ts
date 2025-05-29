@@ -46,7 +46,7 @@ export const useCartStore = create<CartStore>()(
         get().items.reduce((total, item) => total + item.qty * item.price, 0),
     }),
     {
-      name: 'codingthailand-cart', // key ที่ใช้ใน localStorage
+      name: 'cosci-cart', // key ที่ใช้ใน localStorage
     }
   )
 )

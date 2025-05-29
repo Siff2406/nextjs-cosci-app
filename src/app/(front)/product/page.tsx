@@ -1,5 +1,4 @@
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import {
   Select,
@@ -11,7 +10,7 @@ import {
 import { product } from "@/db/schema";
 import { desc } from "drizzle-orm";
 import db from "@/db";
-import { ChevronRight } from "lucide-react";
+import CartButton from "../components/CartButton";
 
 
 const Product = async () => {
@@ -20,7 +19,6 @@ const Product = async () => {
 
   return (
     <div className="max-w-screen-xl mx-auto py-16 px-6 xl:px-0">
-      <p>{JSON.stringify(products)}</p>
       <div className="flex items-end justify-between">
         <h2 className="text-3xl font-bold tracking-tight">Posts</h2>
         <Select defaultValue="recommended">
@@ -54,10 +52,7 @@ const Product = async () => {
               <h2 className="mt-4 text-[1.35rem] font-semibold tracking-tight">
                 {i.title}
               </h2>
-
-              <Button className="mt-6 shadow-none">
-                หยิบใส่ตะกร้า <ChevronRight />
-              </Button>
+              <CartButton product={i} />
             </CardContent>
           </Card>
         ))}
