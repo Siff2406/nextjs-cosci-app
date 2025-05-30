@@ -6,8 +6,14 @@ import Link from "next/link";
 import { ShoppingBasket } from "lucide-react";
 import { Badge } from "../ui/badge";
 import CountCartItem from "@/app/(front)/components/CountCartItem";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 
-const Navbar01Page = () => {
+
+const Navbar01Page = async () => {
+  const session = await auth.api.getSession({
+    headers: await headers()
+  });
   return (
     <div className="bg-muted">
       <nav className="h-16 bg-background border-b">
@@ -23,13 +29,16 @@ const Navbar01Page = () => {
             <Link href="/cart">
               <Badge className="p-2 text-sm"><ShoppingBasket className="" /><CountCartItem></CountCartItem> item(s)</Badge>    
             </Link>
-            <Button asChild variant="outline" className="hidden sm:inline-flex">
-            <Link href="/login">เข้าสู่ระบบหรอจ้ะ</Link>
-            </Button>
-            <Button asChild>
-            <Link href="/signup">อยากสมัครสมาชิกหรอ</Link>
-            </Button>
-
+              {!session && (
+                <>
+                  <Button asChild variant="outline" className="hidden sm:inline-flex">
+                  <Link href="/login">เข้าสู่ระบบหรอจ้ะ</Link>
+                  </Button>
+                  <Button asChild>
+                  <Link href="/signup">อยากสมัครสมาชิกหรอ</Link>
+                  </Button>
+                </>
+              )}
             {/* Mobile Menu */}
             <div className="md:hidden">
               <NavigationSheet />
