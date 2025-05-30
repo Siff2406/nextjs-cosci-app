@@ -46,7 +46,7 @@ const Navbar01Page = async () => {
                 <div className="flex items-center">
                   Hello,{session.user.name}
                 </div>
-                <Button variant="destructive" asChild>
+                <Button className="bg-blue-500 hover:bg-blue-400 text-white" asChild>
                   <Link href="/dashboard">Dashboard</Link>
                  </Button>
                 </>
