@@ -32,13 +32,26 @@ const Navbar01Page = async () => {
               {!session && (
                 <>
                   <Button asChild variant="outline" className="hidden sm:inline-flex">
-                  <Link href="/login">เข้าสู่ระบบหรอจ้ะ</Link>
+                    <Link href="/login">เข้าสู่ระบบหรอจ้ะ</Link>
                   </Button>
-                  <Button asChild>
-                  <Link href="/signup">อยากสมัครสมาชิกหรอ</Link>
+                    <Button asChild>
+                      <Link href="/signup">อยากสมัครสมาชิกหรอ</Link>
                   </Button>
                 </>
               )}
+
+              {
+              session && (
+                <>
+                <div className="flex items-center">
+                  Hello,{session.user.name}
+                </div>
+                <Button variant="destructive" asChild>
+                  <Link href="/dashboard">Dashboard</Link>
+                 </Button>
+                </>
+              )
+             }
             {/* Mobile Menu */}
             <div className="md:hidden">
               <NavigationSheet />
