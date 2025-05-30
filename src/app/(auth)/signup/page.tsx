@@ -14,23 +14,48 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { authClient } from "@/lib/auth-client"; //import the auth client
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
+  name: z.string().min(1, "ชื่อ-สกุลต้องมีอย่างน้อย 1 ตัวอักษร"),
   email: z.string().email("กรุณากรอกอีเมลที่ถูกต้อง"),
   password: z.string().min(6, "รหัสผ่านต้องมีอย่างน้อย 6 ตัวอักษร"),
 });
 
 const Signup01Page = () => {
+  const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     defaultValues: {
+      name: "",
       email: "",
       password: "",
     },
     resolver: zodResolver(formSchema),
   });
 
-  const onSubmit = (data: z.infer<typeof formSchema>) => {
-    console.log(data);
+  const onSubmit = async (form: z.infer<typeof formSchema>) => {
+    
+    await authClient.signUp.email({
+        name: form.name, // user name -> required
+        email: form.email, // user email address
+        password: form.password, // user password -> min 8 characters by default
+        callbackURL: "/login" // A URL to redirect to after the user verifies their email (optional)
+    }, {
+        onRequest: (ctx) => {
+            //show loading
+            console.log(ctx.body);
+        },
+        onSuccess: (ctx) => {
+            //redirect to the dashboard or sign in page
+            console.log(ctx.data);
+            router.replace("/login");
+        },
+        onError: (ctx) => {
+            // display the error message
+            alert(ctx.error.message);
+        },
+  });
   };
 
   return (
@@ -48,6 +73,24 @@ const Signup01Page = () => {
             className="w-full space-y-4"
             onSubmit={form.handleSubmit(onSubmit)}
           >
+            <FormField
+              control={form.control}
+              name="name"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Name</FormLabel>
+                  <FormControl>
+                    <Input
+                      type="text"
+                      placeholder="Your Name"
+                      className="w-full"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
             <FormField
               control={form.control}
               name="email"
@@ -85,7 +128,7 @@ const Signup01Page = () => {
               )}
             />
             <Button type="submit" className="mt-4 w-full">
-              Continue with Email
+              Submit
             </Button>
           </form>
         </Form>
