@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { mysqlTable, varchar, text, timestamp, boolean, int } from "drizzle-orm/mysql-core";
 
 export const user = mysqlTable("user", {
@@ -18,14 +19,14 @@ export const session = mysqlTable("session", {
  updatedAt: timestamp('updated_at').notNull(),
  ipAddress: text('ip_address'),
  userAgent: text('user_agent'),
- userId: text('user_id').notNull().references(()=> user.id, { onDelete: 'cascade' })
+ userId: varchar('user_id',{ length: 36 }).notNull().references(()=> user.id, { onDelete: 'cascade' })
 				});
 
 export const account = mysqlTable("account", {
 					id: varchar('id', { length: 36 }).primaryKey(),
 					accountId: text('account_id').notNull(),
  providerId: text('provider_id').notNull(),
- userId: text('user_id').notNull().references(()=> user.id, { onDelete: 'cascade' }),
+ userId: varchar('user_id',{ length: 36}).notNull().references(()=> user.id, { onDelete: 'cascade' }),
  accessToken: text('access_token'),
  refreshToken: text('refresh_token'),
  idToken: text('id_token'),
