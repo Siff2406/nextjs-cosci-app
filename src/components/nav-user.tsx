@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client"
 
 import {
@@ -28,6 +29,8 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar"
+import { useRouter } from "next/navigation"
+import { authClient } from "@/lib/auth-client"
 
 export function NavUser({
   user,
@@ -38,7 +41,12 @@ export function NavUser({
     avatar: string
   }
 }) {
+  const router = useRouter();
   const { isMobile } = useSidebar()
+
+  function async(): void {
+    throw new Error("Function not implemented.")
+  }
 
   return (
     <SidebarMenu>
@@ -98,7 +106,15 @@ export function NavUser({
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
+            <DropdownMenuItem onClick={ async () => {
+              await authClient.signOut({
+                fetchOptions: {
+                  onSuccess: () => {
+                    router.replace('/');
+                  }
+                }
+              });
+            }}>
               <IconLogout />
               Log out
             </DropdownMenuItem>
